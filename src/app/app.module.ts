@@ -18,6 +18,11 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { PostCardComponent } from './layouts/post-card/post-card.component';
 
 
+
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../environments/environment.prod";
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +44,8 @@ import { PostCardComponent } from './layouts/post-card/post-card.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

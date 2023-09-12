@@ -1,14 +1,14 @@
-<div class="card shadow-effect">
-  <img src="https://images.pexels.com/photos/11198211/pexels-photo-11198211.png?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="">
+<div class="card shadow-effect" *ngIf="postData">
+  <img src="{{postData?.postImgPath}}" alt="">
   <div class="card-body">
-    <small class="bg-light text-danger text-center">Design</small>
+    <small class="bg-light text-danger text-center">{{postData?.category?.category}}</small>
     <small class="bg-light text-success text-center ms-3">Featured</small>
-    <small class="bg-light text-info text-center ms-3">View 100,256</small>
- 
-    <h5 class="mt-1">HOW TO START A BLOG IN 2021 EDITED NEW CATEGORY</h5>
-    <p>Coming up with winning ideas is often the most difficult part of blogging, so it’s crucial to carve out time for creative thinking.</p>  
+    <small class="bg-light text-info text-center ms-3">{{postData?.views}}</small>
 
-    <small class="bg-light text-warning text-center ms-3">LAST UPDATED  , SEPT , 20, 2020</small>
+    <h5 class="mt-1">{{postData?.title}}</h5>
+    <p>{{postData?.excerpt}}</p>
+
+    <small class="bg-light text-warning text-center ms-3">LAST UPDATED  , {{postData?.createdAt.toMillis() | date}}</small>
 
   </div>
 </div>
