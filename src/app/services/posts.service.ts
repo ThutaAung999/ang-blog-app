@@ -13,7 +13,7 @@ export class PostsService {
 
   //Angular 14
   loadFeatured():Observable<Post[]>{
-    return this.afs.collection('posts',ref=>ref.where("isFeatured",'==', true)).snapshotChanges().pipe(
+    return this.afs.collection('posts',ref=>ref.where("isFeatured",'==', true).limit(4)).snapshotChanges().pipe(
       map(actions=>{
         return actions.map(a=>{
 
@@ -28,6 +28,23 @@ export class PostsService {
           const id=a.payload.doc.id;
           return {id,post} as Post
            */
+        })
+      })
+    )
+  }
+
+
+  loadLatest():Observable<Post[]>{
+
+    return this.afs.collection('posts',ref=>ref.orderBy('createdAt')).snapshotChanges().pipe(
+      map(actions=>{
+        return actions.map(a=>{
+
+          const post=a.payload.doc.data()  as Post
+          const id=a.payload.doc.id;
+          post.id = id;
+
+          return  post
         })
       })
     )
